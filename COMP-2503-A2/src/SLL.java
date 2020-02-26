@@ -69,11 +69,10 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
    }
    
    public void printList() {
-       System.out.println();
-       Node<T> currentNode = head;
-       while (currentNode != null) {
-           System.out.println(currentNode.toString());
-           currentNode = currentNode.getNext();
+       Node<T> curr = head;
+       while (curr != null) {
+           System.out.println(curr.toString());
+           curr = curr.getNext();
        }
    }
    
