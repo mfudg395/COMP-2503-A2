@@ -1,9 +1,10 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.util.Collections;
+import java.util.Iterator;
 /**
- * COMP 2503 Winter 2020 Assignment 1
+ * COMP 2503 Winter 2020 Assignment 2
  * 
  * This program reads a text file and compiles a list of the words together with
  * how many each word appears.
@@ -48,6 +49,10 @@ public class A2 {
 		 * TODO: Use collection sort to sort the wordlist in descending frequency order.
 		 * Then print the first 10.
 		 */
+		SLL<Token> descList = new SLL<Token>();
+		descList = wordlist.sort(new CompCountDesc());
+		descList.printList();
+		
 
 		System.out.println();
 		System.out.println("10 Least Frequent");
@@ -55,6 +60,7 @@ public class A2 {
 		 * TODO: Use collection sort to sort the wordlist in ascending frequency order.
 		 * Then print the first 10.
 		 */
+		wordlist.printList();
 
 		System.out.println();
 		System.out.println("All");
@@ -108,7 +114,7 @@ public class A2 {
 				return;
 			}
 		}
-		wordlist.add(new Token(s));
+		wordlist.addInOrder(new Token(s));
 	}
 
 	/**
