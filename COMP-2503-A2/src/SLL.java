@@ -1,16 +1,19 @@
 import java.util.Iterator;
 
 public class SLL<T extends Comparable<T>> implements Iterable<T> {
+	
    private Node<T> head;
-   private Node<T> tail; 
+   private Node<T> tail;
+   private int size;
+   
+   public SLL() {
+	   head = null;
+	   tail = null;
+	   size = 0;
+   }
  
    public void addHead(Node<T> n) {
 	   n.setNext(null);
-	   
-	   if (n.getData() == null) { // nothing happens if the new node has no data
-		   return;
-	   }
-	   
 	   if (head == null) {
 		   head = n;
 		   tail = n;
@@ -41,9 +44,28 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
        
    }
 
-   public void add(Node<T> n) {
-	   // TODO: add an element in the appropriate position of
-	   // the list (by natural sorting, ascending, or descending)
+   public void add(T t) {
+	   Node<T> n = new Node<>(t);
+	   if (n.getData() == null) {
+		   return;
+	   }
+	   
+	   if (head == null || n.getData().compareTo(head.getData()) <= 0) {
+		   addHead(n);
+	   } else {
+		   Node<T> curr = head;
+		   while (curr.getNext() != null && n.getData().compareTo(curr.getNext().getData()) > 0) {
+			   curr = curr.getNext();
+		   }
+		   
+		   if (curr.getNext() == null) {
+			   addTail(n);
+		   } else {
+			   n.setNext(curr.getNext());
+			   curr.setNext(n);
+		   }
+	   }
+	   size++;
    }
    
    public void printList() {
@@ -58,10 +80,15 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
    public void emptyList() {
        head = null;
        tail = null;
+       size = 0;
    }
    
    public Node<T> getTail() {
 	   return tail;
+   }
+   
+   public int size() {
+	   return size;
    }
 
 
@@ -71,7 +98,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
    public Iterator<T> iterator() {
 	   return new Iterator<T>() {
 		   
-		   Node<T> curr = head;
+		   private Node<T> curr = head;
 		   
 		   @Override
 		   public boolean hasNext() {
