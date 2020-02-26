@@ -62,6 +62,7 @@ public class A2 {
 		 * TODO: Use collection sort to sort the wordlist by its natural ordering
 		 * (alphabetical). Then print all the words.
 		 */
+		wordlist.printList();
 	}
 
 	/**
