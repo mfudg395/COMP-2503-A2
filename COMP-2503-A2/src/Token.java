@@ -1,6 +1,10 @@
 /** 
  * COMP 2503 Winter 2020 Assignment 2 Token Class
  * 
+ * This class represents a Token to be used in a list, 
+ * containing a word and a counter for the number of times
+ * the word occurs.
+ * 
  * @author Matthew Fudge
 */
 

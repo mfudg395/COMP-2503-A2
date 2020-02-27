@@ -9,7 +9,6 @@ import java.util.Arrays;
  *
  * Words from a standard list of stop words are not included.
  * 
- * 
  * @author Matthew Fudge
  */
 public class A2 {

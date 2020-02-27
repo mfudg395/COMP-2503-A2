@@ -1,3 +1,12 @@
+/**
+ * COMP-2503 Winter 2020 Assignment 2 Node class
+ * 
+ * This class is for Nodes to be used in a singly-linked list.
+ * 
+ * @author mfudg395
+ *
+ * @param <T> data to be used in a Node
+ */
 public class Node<T extends Comparable<T>> {
    
     private T data;

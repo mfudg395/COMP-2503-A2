@@ -2,7 +2,6 @@ import java.util.Comparator;
 
 public class CompCountAsc implements Comparator<Token> {
 
-	
 	/**
 	 * Sorts tokens based on ascending order
 	 * of their counter frequency.

@@ -1,3 +1,14 @@
+/**
+ * COMP-2503 Assignment 2 SLL class
+ * 
+ * This class represents a singly-linked list with a tracked head and
+ * size.
+ * 
+ * Nodes inserted into lists of this class will be sorted by their
+ * natural order, or by a given order with a Comparator.
+ * 
+ * @author Matthew Fudge
+ */
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -6,11 +17,19 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 	private Node<T> head;
 	private int size;
 
+	/**
+	 * Constructor for objects of class SLL.
+	 */
 	public SLL() {
 		head = null;
 		size = 0;
 	}
 
+	/**
+	 * Adds a node to the head of a singly-linked list.
+	 * 
+	 * @param n the node to add to the list
+	 */
 	public void addHead(Node<T> n) {
 		n.setNext(null);
 		if (head == null) {
@@ -21,6 +40,11 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		}
 	}
 
+	/**
+	 * Adds a node to the tail of a singly-linked list.
+	 * 
+	 * @param n the node to add to the list
+	 */
 	public void addTail(Node<T> n) {
 		n.setNext(null);
 
@@ -40,6 +64,12 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 
 	}
 
+	/**
+	 * Adds nodes with given data to a list based on
+	 * natural ordering.
+	 * 
+	 * @param t data to be used in a node
+	 */
 	public void addInOrder(T t) {
 		Node<T> n = new Node<>(t);
 		if (n.getData() == null) {
@@ -64,6 +94,13 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		size++;
 	}
 	
+	/**
+	 * Overloaded method that adds nodes with given data 
+	 * to a list in an order defined by a given comparator.
+	 * 
+	 * @param t data to be used in a node
+	 * @param c Comparator with criteria to sort list by
+	 */
 	public void addInOrder(T t, Comparator<T> c) {
 		Node<T> n = new Node<>(t);
 		if (n.getData() == null) {
@@ -87,30 +124,10 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		}
 		size++;
 	}
-
-	public SLL<T> sort(Comparator<T> c) {
-			if (isEmpty()) {
-				return null;
-			} else {
-				Node<T> curr = head, index;
-				T temp;
-				while (curr != null) {
-					index = curr.getNext();
-					while (index != null) {
-						if (c.compare(curr.getData(), index.getData()) < 0) {
-							temp = curr.getData();
-							curr.setData(index.getData());
-							index.setData(temp);
-						}
-					index = index.getNext();
-					}
-				curr = curr.getNext();
-				}
-			}
-			return this;
-		
-	}
 	
+	/**
+	 * Prints all elements in a singly linked list.
+	 */
 	public void printList() {
 		Node<T> curr = head;
 		while (curr != null) {
@@ -119,6 +136,12 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		}
 	}
 	
+	/**
+	 * Overloaded method that prints a given amount of
+	 * elements in the list.
+	 * 
+	 * @param amount
+	 */
 	public void printList(int amount) {
 		Node<T> curr = head;
 		int i = 0;
@@ -138,12 +161,13 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		return size;
 	}
 
-	private boolean isEmpty() {
-		return size == 0;
-	}
-
-	// Iterator completed with assistance from Nahuel Paladino
-	// and Pedro Janikian.
+	/**
+	 * Iterator used for SLL that returns each object in the list.
+	 * This was created to allow for use of a for-each loop on lists
+	 * in the A2 class.
+	 * 
+	 * Completed with assistance from Nahuel Paladino and Pedro Janikian.
+	 */
 	@Override
 	public Iterator<T> iterator() {
 		return new Iterator<T>() {
