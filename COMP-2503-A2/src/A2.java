@@ -46,14 +46,7 @@ public class A2 {
 		for (Token t : wordlist) {
 			desclist.addInOrder(t, new CompCountDesc());
 		}
-		
-		int i = 0;
-		for (Token t : desclist) {
-			if (i < 10) {
-				System.out.println(t);
-			}
-			i++;
-		}
+		desclist.printList(10);
 
 		System.out.println();
 		System.out.println("10 Least Frequent");
@@ -62,15 +55,8 @@ public class A2 {
 		for (Token t : wordlist) {
 			asclist.addInOrder(t, new CompCountAsc());
 		}
-		
-		i = 0;
-		for (Token t : asclist) {
-			if (i < 10) {
-				System.out.println(t);
-			}
-			i++;
-		}
-		
+		asclist.printList(10);
+
 		System.out.println();
 		System.out.println("All");
 		
