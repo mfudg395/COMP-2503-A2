@@ -68,23 +68,26 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 	 * Adds nodes with given data to a list based on
 	 * natural ordering.
 	 * 
+	 * This method is a slightly-modified version of the 
+	 * one used in Lab 4.
+	 * 
 	 * @param t data to be used in a node
 	 */
 	public void addInOrder(T t) {
 		Node<T> n = new Node<>(t);
-		if (n.getData() == null) {
+		if (n.getData() == null) { // if the node contains nothing
 			return;
 		}
 
-		if (head == null || n.getData().compareTo(head.getData()) <= 0) {
+		if (head == null || n.getData().compareTo(head.getData()) <= 0) { // if the node goes at the beginning
 			addHead(n);
 		} else {
 			Node<T> curr = head;
 			while (curr.getNext() != null && n.getData().compareTo(curr.getNext().getData()) > 0) {
-				curr = curr.getNext();
+				curr = curr.getNext(); // continues checking elements until it finds a spot for the node
 			}
 
-			if (curr.getNext() == null) {
+			if (curr.getNext() == null) { // if a spot wasn't found
 				addTail(n);
 			} else {
 				n.setNext(curr.getNext());
@@ -112,7 +115,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		} else {
 			Node<T> curr = head;
 			while (curr.getNext() != null && c.compare(n.getData(), curr.getNext().getData()) > 0) {
-				curr = curr.getNext();
+				curr = curr.getNext(); 
 			}
 
 			if (curr.getNext() == null) {
@@ -187,5 +190,4 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 			}
 		};
 	}
-
 }
