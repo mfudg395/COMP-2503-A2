@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.Comparator;
 /**
  * COMP 2503 Winter 2020 Assignment 2
  * 
@@ -46,9 +47,7 @@ public class A2 {
 		 * TODO: Use collection sort to sort the wordlist in descending frequency order.
 		 * Then print the first 10.
 		 */
-		SLL<Token> descList = new SLL<Token>(wordlist, new CompCountDesc());
-		
-		descList.printList();
+		SLL<Token> desclist = new SLL<Token>(wordlist);
 		
 
 		System.out.println();
@@ -57,7 +56,6 @@ public class A2 {
 		 * TODO: Use collection sort to sort the wordlist in ascending frequency order.
 		 * Then print the first 10.
 		 */
-		wordlist.printList();
 
 		System.out.println();
 		System.out.println("All");

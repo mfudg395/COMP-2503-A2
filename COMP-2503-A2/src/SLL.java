@@ -12,6 +12,15 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		tail = null;
 		size = 0;
 	}
+	
+	public SLL(SLL<T> list, Comparator<T> c) {
+		head = null;
+		tail = null;
+		size = 0;
+		for (T t : list) {
+			list.addInOrder(t, c);
+		}
+	}
 
 	public void addHead(Node<T> n) {
 		n.setNext(null);
@@ -44,7 +53,9 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		}
 
 	}
-
+	// consider splitting into 2 methods (add natural, add comparator); add comparator is only called
+	// if your SLL took in a Comparator parameter (either asc or desc). This method would be how it's
+	// added naturally, but you'd need a new one for the Comparators
 	public void addInOrder(T t) {
 		Node<T> n = new Node<>(t);
 		if (n.getData() == null) {
@@ -68,9 +79,32 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		}
 		size++;
 	}
+	
+	public void addInOrder(T t, Comparator c) {
+		Node<T> n = new Node<>(t);
+		if (n.getData() == null) {
+			return;
+		}
+
+		if (head == null || c.compare(n.getData(), this.getData()) <= 0) {
+			addHead(n);
+		} else {
+			Node<T> curr = head;
+			while (curr.getNext() != null && n.getData().compareTo(curr.getNext().getData()) > 0) {
+				curr = curr.getNext();
+			}
+
+			if (curr.getNext() == null) {
+				addTail(n);
+			} else {
+				n.setNext(curr.getNext());
+				curr.setNext(n);
+			}
+		}
+		size++;
+	}
 
 	public SLL<T> sort(Comparator<T> c) {
-		return new SLL<T> {
 			if (isEmpty()) {
 				return null;
 			} else {
@@ -89,7 +123,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 				curr = curr.getNext();
 				}
 			}
-		};
+			return this;
 		
 	}
 
