@@ -63,7 +63,15 @@ public class A2 {
 		for (Token t : wordlist) {
 			asclist.addInOrder(t, new CompCountAsc());
 		}
-		asclist.printList();
+		
+		i = 0;
+		for (Token t : asclist) {
+			if (i < 10) {
+				System.out.println(t);
+			}
+			i++;
+		}
+		
 		System.out.println();
 		System.out.println("All");
 		

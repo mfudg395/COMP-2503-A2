@@ -15,6 +15,6 @@ public class CompCountDesc implements Comparator<Token> {
 		if (t1.getCounter() == t2.getCounter()) {
 			return t1.compareTo(t2);
 		}
-		return t1.getCounter() - t2.getCounter();
+		return t2.getCounter() - t1.getCounter();
 	}
 }
