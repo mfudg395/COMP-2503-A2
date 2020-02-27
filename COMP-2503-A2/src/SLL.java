@@ -4,18 +4,15 @@ import java.util.Iterator;
 public class SLL<T extends Comparable<T>> implements Iterable<T> {
 
 	private Node<T> head;
-	private Node<T> tail;
 	private int size;
 
 	public SLL() {
 		head = null;
-		tail = null;
 		size = 0;
 	}
 	
 	public SLL(SLL<T> list, Comparator<T> c) {
 		head = null;
-		tail = null;
 		size = 0;
 		for (T t : list) {
 			list.addInOrder(t, c);
@@ -26,7 +23,6 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		n.setNext(null);
 		if (head == null) {
 			head = n;
-			tail = n;
 		} else {
 			n.setNext(head);
 			head = n;
@@ -42,14 +38,12 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 
 		if (head == null) {
 			head = n;
-			tail = n;
 		} else {
 			Node<T> current = head;
 			while (current.getNext() != null) {
 				current = current.getNext();
 			}
 			current.setNext(n);
-			tail = n;
 		}
 
 	}
@@ -137,7 +131,6 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 
 	public void emptyList() {
 		head = null;
-		tail = null;
 		size = 0;
 	}
 

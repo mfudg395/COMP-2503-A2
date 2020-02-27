@@ -1,5 +1,3 @@
-import java.util.Comparator;
-
 /** 
  * COMP 2503 Winter 2020 Assignment 2 Token Class
  * 
