@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.Comparator;
+
 /**
  * COMP 2503 Winter 2020 Assignment 2
  * 
@@ -47,8 +48,18 @@ public class A2 {
 		 * TODO: Use collection sort to sort the wordlist in descending frequency order.
 		 * Then print the first 10.
 		 */
-		SLL<Token> desclist = new SLL<Token>(wordlist);
+		SLL<Token> desclist = new SLL<Token>();
+		for (Token t : wordlist) {
+			desclist.addInOrder(t, new CompCountDesc());
+		}
 		
+		int i = 0;
+		for (Token t : desclist) {
+			if (i < 10) {
+				System.out.println(t);
+			}
+			i++;
+		}
 
 		System.out.println();
 		System.out.println("10 Least Frequent");
@@ -56,7 +67,11 @@ public class A2 {
 		 * TODO: Use collection sort to sort the wordlist in ascending frequency order.
 		 * Then print the first 10.
 		 */
-
+		SLL<Token> asclist = new SLL<Token>();
+		for (Token t : wordlist) {
+			asclist.addInOrder(t, new CompCountAsc());
+		}
+		asclist.printList();
 		System.out.println();
 		System.out.println("All");
 		/*
@@ -93,12 +108,11 @@ public class A2 {
 	}
 
 	/**
-	 * Checks if a String already exists in a token in the wordlist.
-	 * The SLL uses an Iterator to check through the entire list via
-	 * a for-each loop.
+	 * Checks if a String already exists in a token in the wordlist. The SLL uses an
+	 * Iterator to check through the entire list via a for-each loop.
 	 * 
-	 * The use of an iterator was an idea given by Nahuel Paladino and
-	 * Pedro Janikian.
+	 * The use of an iterator was an idea given by Nahuel Paladino and Pedro
+	 * Janikian.
 	 * 
 	 * @param s String to check if it already exists in a token
 	 */

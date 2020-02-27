@@ -80,17 +80,17 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		size++;
 	}
 	
-	public void addInOrder(T t, Comparator c) {
+	public void addInOrder(T t, Comparator<T> c) {
 		Node<T> n = new Node<>(t);
 		if (n.getData() == null) {
 			return;
 		}
 
-		if (head == null || c.compare(n.getData(), this.getData()) <= 0) {
+		if (head == null || c.compare(n.getData(), head.getData()) >= 0) {
 			addHead(n);
 		} else {
 			Node<T> curr = head;
-			while (curr.getNext() != null && n.getData().compareTo(curr.getNext().getData()) > 0) {
+			while (curr.getNext() != null && c.compare(n.getData(), head.getData()) < 0) {
 				curr = curr.getNext();
 			}
 
