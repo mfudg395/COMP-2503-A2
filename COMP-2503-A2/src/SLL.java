@@ -10,14 +10,6 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		head = null;
 		size = 0;
 	}
-	
-	public SLL(SLL<T> list, Comparator<T> c) {
-		head = null;
-		size = 0;
-		for (T t : list) {
-			list.addInOrder(t, c);
-		}
-	}
 
 	public void addHead(Node<T> n) {
 		n.setNext(null);
@@ -47,9 +39,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 		}
 
 	}
-	// consider splitting into 2 methods (add natural, add comparator); add comparator is only called
-	// if your SLL took in a Comparator parameter (either asc or desc). This method would be how it's
-	// added naturally, but you'd need a new one for the Comparators
+
 	public void addInOrder(T t) {
 		Node<T> n = new Node<>(t);
 		if (n.getData() == null) {
@@ -120,12 +110,22 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 			return this;
 		
 	}
-
+	
 	public void printList() {
 		Node<T> curr = head;
 		while (curr != null) {
 			System.out.println(curr.toString());
 			curr = curr.getNext();
+		}
+	}
+	
+	public void printList(int amount) {
+		Node<T> curr = head;
+		int i = 0;
+		while (curr != null && i < amount) {
+			System.out.println(curr.toString());
+			curr = curr.getNext();
+			i++;
 		}
 	}
 
