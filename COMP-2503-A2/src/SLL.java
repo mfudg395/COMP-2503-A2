@@ -84,7 +84,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T> {
 			addHead(n);
 		} else {
 			Node<T> curr = head;
-			while (curr.getNext() != null && c.compare(n.getData(), curr.getData()) > 0) {
+			while (curr.getNext() != null && c.compare(n.getData(), curr.getNext().getData()) > 0) {
 				curr = curr.getNext();
 			}
 
